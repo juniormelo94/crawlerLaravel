@@ -7,52 +7,110 @@ use App\Models\Artigo;
 
 class testeUplexisController extends Controller
 {
-    private $url = 'https://uplexis.com.br/blog/';
+    private $url = 'https://uplexis.com.br/blog/?s=';
 
     public function __construct(Artigo $artigos)
     {
         $this->artigos = $artigos;
     }
 
-    public function requisicao()
+    public function requisicao(Request $request)
     {   
-        // Start curl.
+        $capture = $request->all();
+
         $ci = curl_init();
-        // Seta algumas opções
-        curl_setopt($ci, CURLOPT_URL, $this->url);
+        
+        curl_setopt($ci, CURLOPT_URL, $this->url.$capture['texto']);
         curl_setopt($ci, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ci, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($ci, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ci, CURLOPT_SSL_VERIFYHOST, false);
-        // Envia a requisição e salva a resposta
+
         $response = curl_exec($ci);
-        // Conferir se houve algum error.
+
         if(curl_exec($ci) == false){
             echo 'Curl error: '.curl_error($ci);
         }
-        // Fecha a requisição e limpa a memória
+        
         curl_close($ci);
 
-        // Get answer and do data separation.
-        preg_match_all('/Blog<\/h2>(.*?)page-link/isu', $response, $toSeparate);
-        // Take separation and cut out data.
-        preg_match_all('/title">(.*?)<\/div>(:?.*?)href="(.*?)"/isu', $toSeparate[1][0], $clipping);
+        preg_match_all('/title">(.*?)<\/div>(:?.*?)href="(.*?)"/isu', $response, $clipping);
 
-        // Inserting articles into the database.
+        $insert = [];
+
         foreach ($clipping[1] as $key => $title) {
 
-            $insert = $this->artigos->create([
+            $validateData = $this->artigos->where('titulo', ltrim($title))->first();
+
+            if ($validateData){
+                continue;
+            }
+
+            $insert[] = $this->artigos->create([
                 'users_id' => 1,
                 'titulo' => ltrim($title), 
                 'link' => $clipping[3][$key] 
             ]);
-
         }
 
         echo '<pre>';
         print_r($insert);
         exit();
 
+
+        if($response)
+            return redirect()->route('template')
+                             ->with('sucesso', 'Artigos relacionados a '.$search['texto'].', foram salvos com sucesso!');
+        else
+            return redirect()->route('template')
+                             ->with('erro', 'Falha ao tentar salvar artigos relacionados a '.$search['texto'].'!');
+    }
+
+    public function index()
+    {
+        return view('home.index');
+    }
+
+    public function table()
+    {
+        $dataArticles = $this->artigos->get();
+
+        if($dataArticles){
+            return view('home.table', compact('dataArticles'));
+        }
+        return redirect()->route('index')
+                             ->with('erro', 'Falha ao tentar buscar dados!');
+
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        dd($id);        //get the promotor viewed by id.
+        $dataShowPromotor = $this->promotores->find($id);
+
+        //delete promotor.
+        $deletePromotor = $dataShowPromotor->delete();
+
+        if($deletePromotor)
+            return redirect(route('promotoresindex'));
+        else
+            return "Deletar item ".$id;
+    }
+
+
+    public function delete(Request $request, $id)
+    {
+        dd($id);  
+
+        $dataShowPromotor = $this->promotores->find($id);
+
+        //delete promotor.
+        $deletePromotor = $dataShowPromotor->delete();
+
+        if($deletePromotor)
+            return redirect(route('promotoresindex'));
+        else
+            return "Deletar item ".$id;
     }
 
 
@@ -68,10 +126,10 @@ class testeUplexisController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
+    // public function index()
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -134,8 +192,8 @@ class testeUplexisController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+    // public function destroy($id)
+    // {
+    //     //
+    // }
 }

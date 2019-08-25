@@ -1,0 +1,19 @@
+body{
+	background: #E8E8E8;
+}
+
+.margin-top{
+	margin-top: 80px;
+}
+
+.color-white{
+	color: white !important;
+}
+
+.font-weight{
+	font-weight: 700;
+}
+
+.background-orange{
+	background: #FF4500;
+}

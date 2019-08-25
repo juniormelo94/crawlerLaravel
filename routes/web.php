@@ -19,7 +19,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 	Route::get('/home', 'HomeController@index')->name('home');
 	
-	Route::get('/requisicao', 'testeUplexisController@requisicao')->name('requisicao');
+	Route::post('/requisicao', 'testeUplexisController@requisicao')->name('requisicao');
+
+	Route::get('/index', 'testeUplexisController@index')->name('index');
+
+	Route::get('/table', 'testeUplexisController@table')->name('table');
+
+	Route::post('/excluir', 'testeUplexisController@destroy')->name('excluir');
 
 });
 
