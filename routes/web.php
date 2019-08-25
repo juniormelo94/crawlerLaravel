@@ -10,23 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['prefix' => '/', 'middleware' => ['auth']], function () {
+	Route::get('/', 'BlogUplexisController@index')->name('/');
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+	Route::post('/search', 'BlogUplexisController@search')->name('search');
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
+	Route::get('/articles', 'BlogUplexisController@listArticles')->name('articles');
 
-	Route::get('/home', 'HomeController@index')->name('home');
-	
-	Route::post('/requisicao', 'testeUplexisController@requisicao')->name('requisicao');
-
-	Route::get('/index', 'testeUplexisController@index')->name('index');
-
-	Route::get('/table', 'testeUplexisController@table')->name('table');
-
-	Route::post('/excluir', 'testeUplexisController@destroy')->name('excluir');
-
+	Route::get('/delete/{id}', 'BlogUplexisController@delete')->name('delete');
 });
 
 Auth::routes();
