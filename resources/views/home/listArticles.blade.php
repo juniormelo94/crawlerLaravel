@@ -1,10 +1,8 @@
 @extends('template.template')
 
 @section('content')
-
 	<!-- Begin Page Content -->
 	<div class="container-fluid margin-top">
-
 		<!-- DataTales Example -->
 		<div class="card shadow mb-4">
 		  <div class="card-header py-3">
@@ -52,7 +50,6 @@
 		    </div>
 		  </div>
 		</div>
-
 	</div>
 	<!-- /.container-fluid -->
 

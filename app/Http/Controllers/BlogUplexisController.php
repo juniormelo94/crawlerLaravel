@@ -27,15 +27,15 @@ class BlogUplexisController extends Controller
      */
     public function search(Request $request)
     {   
-        $response = (new curl())->curlGet($this->url.$request->text);
+        $response = (new curl())->curlGet($this->url.$request->search);
 
         preg_match_all('/title">(.*?)<\/div>(:?.*?)href="(.*?)"/isu', $response, $clipping);
 
         try {
-            foreach ($clipping[1] as $key => $title) {
+            foreach ($clipping[3] as $key => $link) {
 
                 $article = new Artigo();
-                $validateData = $article->where('titulo', ltrim($title))->first();
+                $validateData = $article->where('link', $link)->first();
 
                 if ($validateData){
                     continue;
@@ -43,21 +43,21 @@ class BlogUplexisController extends Controller
 
                 $article->create([
                     'user_id' => auth()->user()->id,
-                    'titulo' => ltrim($title), 
-                    'link' => $clipping[3][$key] 
+                    'titulo' => ltrim($clipping[1][$key]), 
+                    'link' => $link 
                 ]);
             }
 
             return view('home.index')
                         ->with(
-                            'sucesso',
-                            'Artigos relacionados a '.$request->text.', foram salvos com sucesso!'
+                            'message',
+                            'Artigos relacionados a '.$request->search.', foram salvos com sucesso!'
                         );
         } catch (Exception $e) {
             return view('home.index')
                         ->with(
-                            'erro',
-                            'Falha ao tentar salvar artigos relacionados a '.$request->text.'!'
+                            'message',
+                            'Falha ao tentar salvar artigos relacionados a '.$request->search.'!'
                         );
         }
     }

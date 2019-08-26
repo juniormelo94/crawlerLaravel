@@ -13,7 +13,7 @@ class Artigo extends Model
     * @var array
     */
     public $fillable = [
-        'users_id',
+        'user_id',
         'titulo',
         'link'
     ];
