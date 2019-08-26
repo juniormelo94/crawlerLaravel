@@ -1,72 +1,29 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## Crawler Laravel
 
-## About Laravel
+O CrawlerLaravel é um projeto criado a partir Curl com a linguagem PHP, usando o framework Laravel. Deixando assim com estrutura robusta e de fácil compreensão.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Instalação
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- git clone "https://github.com/juniormelo94/crawlerLaravel.git".
+- Renomear o arquivo ".env.dev" para ".env".
+- Abrir o terminal e percorer até a pasta do projeto, depois digitar o comando "composer install".
+- Criar um novo banco de dados com o nome "bloguplexis".
+- Digite o comando "php artisan migrate" para criar as tabelas necessárias para o nosso projeto.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Como Utilizar
 
-## Learning Laravel
+- Acesse o projeto com o caminho "http://localhost/crawlerLaravel/public/" ou digite o comando "php artisan serve" e acesse o caminho "http://127.0.0.1:8000".
+- Crie um usuário "admin", e-mail "admin@admin.com" e senha  "admin".
+- Faça uma busca no campo de pesquisa do projeto, que ira até o site "https://uplexis.com.br/blog/" e pegará todos os temas relacionado ao assunto digitado e salvará no no banco de dados.
+- Para ver os artigos salvos clique no botão visualizar, que redirecionara a tela para uma tabela que ira listar todos, podendo também filtrar esses dados com o campo pesquisar.
+- Caso deseje deletar alguma artigo, basta clicar no icone "lixeira" correspondente a linha da tabela ao qual será apagada e confirme a ação, para que o ajax se encarregue da tarefa.
+- Se necessitar voltar a página de captura, basta clicar no botão "Buscar" e mais uma vez a tela será redirecionada para lá.
+- Para deslogar vá até a barra menu do projeto e click no icone "Usuário", e efetuando no campo "Logout".
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Testes de navegadores
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1400 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Para fazermos os testes será necessario digitar o comando "php artisan serve", se não  houver usado o comando antes. Lembrando que esse comando precisará de um terminal a parte.
+- Digite também o comando "php artisan dusk:install" e depois efetuaremos os testes digitando o comando "php artisan dusk". Se obtivermos um "OK", os nossos testes foram realizados com sucesso.
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
