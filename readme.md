@@ -24,6 +24,7 @@ O CrawlerLaravel é um projeto criado a partir Curl com a linguagem PHP, usando 
 ## Testes de navegadores
 
 - Para fazermos os testes será necessário digitar o comando "php artisan serve", se não  houver usado o comando antes. Lembrando que esse comando precisará de um terminal a parte.
+- Antes de começarmos fazer os testes, é necessário que você esteja deslogado no nosso projeto, pois uma das funções de nossos testes é tentar fazer o login, ao qual dará erro se o usuário já estiver logado.   
 - Digite também o comando "php artisan dusk:install" e depois efetuaremos os testes digitando o comando "php artisan dusk". Se obtivermos um "OK", os nossos testes foram realizados com sucesso.
 
 
