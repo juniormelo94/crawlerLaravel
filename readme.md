@@ -7,7 +7,7 @@ O CrawlerLaravel é um projeto criado a partir Curl com a linguagem PHP, usando 
 
 - git clone "https://github.com/juniormelo94/crawlerLaravel.git".
 - Renomear o arquivo ".env.dev" para ".env".
-- Abrir o terminal e percorer até a pasta do projeto, depois digitar o comando "composer install".
+- Abrir o terminal e percorer até a pasta do projeto, depois digite o comando "composer install".
 - Criar um novo banco de dados com o nome "bloguplexis".
 - Digite o comando "php artisan migrate" para criar as tabelas necessárias para o nosso projeto.
 
