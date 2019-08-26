@@ -21,7 +21,7 @@ O CrawlerLaravel é um projeto criado a partir Curl com a linguagem PHP, usando 
 - Se necessitar voltar a página de captura, basta clicar no botão "Buscar" e mais uma vez a tela será redirecionada para lá.
 - Para deslogar vá até a barra menu do projeto e click no icone "Usuário", e efetuando no campo "Logout".
 
-## Browsers Tests
+## Testes Automatizados
 
 - Para fazermos os testes será necessário digitar o comando "php artisan serve", se não  houver usado o comando antes. Lembrando que esse comando precisará de um terminal a parte.
 - Antes de começarmos fazer os testes, é necessário que você esteja deslogado no nosso projeto, pois uma das funções de nossos testes é tentar fazer o login, ao qual dará erro se o usuário já estiver logado.   
